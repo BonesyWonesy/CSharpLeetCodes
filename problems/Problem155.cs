@@ -36,26 +36,12 @@ namespace CSharpLeetCode.problems
       }
       public void Push(int val) {
         _min = Math.Min(_min, val);
-
-        if (_head == null) {
-          _head = new SingleListNode<(int, int)>((val, _min));
-        } else
-        {
-          SingleListNode<(int, int)> node = new SingleListNode<(int, int)>((val, _min), _head);
-          _head = node;
-        }
-
-        
+        _head = new SingleListNode<(int, int)>((val, _min), _head);        
       }
 
       public void Pop() {
         _head = _head.next;
-
-        if (_head == null) {
-          _min = int.MaxValue;
-        } else {
-          _min = _head.val.Item2;
-        }
+        _min = _head == null ? int.MaxValue : _head.val.Item2;
       }
       public int Top() { return _head.val.Item1; }
       public int GetMin() { return _head.val.Item2; }
