@@ -77,7 +77,7 @@ namespace CSharpLeetCode.types
 
         }
 
-        public static string Output(SingleListNode node)
+        public static string Output(SingleListNode<int> node)
         {
             StringBuilder sb = new StringBuilder("[");
             while (node != null)

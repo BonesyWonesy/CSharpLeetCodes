@@ -7,31 +7,31 @@ using System.Threading.Tasks;
 
 namespace CSharpLeetCode.problems
 {
-    internal class Problem206 : LeetCodeProblem, ILeetCodeProblem<SingleListNode, SingleListNode>
+    internal class Problem206 : LeetCodeProblem, ILeetCodeProblem<SingleListNode<int>, SingleListNode<int>>
     {
         public Problem206() : base(Difficulty.Easy) { }
-        public string FormatOutput(SingleListNode node) => OutputFormatters.Output(node);
+        public string FormatOutput(SingleListNode<int> node) => OutputFormatters.Output(node);
 
-        public IEnumerable<(SingleListNode, SingleListNode)> GetTests()
+        public IEnumerable<(SingleListNode<int>, SingleListNode<int>)> GetTests()
         {
-            SingleListNode test1 = new SingleListNode(1, new SingleListNode(2, new SingleListNode(3, new SingleListNode(4, new SingleListNode(5)))));
-            SingleListNode output1 = new SingleListNode(5, new SingleListNode(4, new SingleListNode(3, new SingleListNode(2, new SingleListNode(1)))));
+            SingleListNode<int> test1 = new SingleListNode<int>(1, new SingleListNode<int>(2, new SingleListNode<int>(3, new SingleListNode<int>(4, new SingleListNode<int>(5)))));
+            SingleListNode<int> output1 = new SingleListNode<int>(5, new SingleListNode<int>(4, new SingleListNode<int>(3, new SingleListNode<int>(2, new SingleListNode<int>(1)))));
             yield return (test1, output1);
 
-            SingleListNode test2 = new SingleListNode(1, new SingleListNode(2));
-            SingleListNode output2 = new SingleListNode(2, new SingleListNode(1));
+            SingleListNode<int> test2 = new SingleListNode<int>(1, new SingleListNode<int>(2));
+            SingleListNode<int> output2 = new SingleListNode<int>(2, new SingleListNode<int>(1));
             yield return (test2, output2);
 
             yield return (null, null);
         }
 
-        public SingleListNode Test(SingleListNode head)
+        public SingleListNode<int> Test(SingleListNode<int> head)
         {
-            SingleListNode nodePrev = null;
-            SingleListNode curr = head;
+            SingleListNode<int> nodePrev = null;
+            SingleListNode<int> curr = head;
 
             while ( curr != null ) {
-                SingleListNode next = curr.next;
+                SingleListNode<int> next = curr.next;
                 curr.next = nodePrev;
                 nodePrev = curr;
                 curr = next;

@@ -15,29 +15,29 @@ namespace CSharpLeetCode.problems
     /// Merge the two lists into one sorted list.The list should be made by splicing together the nodes of the first two lists.
     /// Return the head of the merged linked list.
     /// </summary>
-    internal class Problem21: LeetCodeProblem, ILeetCodeProblem<(SingleListNode, SingleListNode), SingleListNode>
+    internal class Problem21: LeetCodeProblem, ILeetCodeProblem<(SingleListNode<int>, SingleListNode<int>), SingleListNode<int>>
     {
         public Problem21() : base(Difficulty.Easy) { }
-        public string FormatOutput(SingleListNode node) => OutputFormatters.Output(node);
+        public string FormatOutput(SingleListNode<int> node) => OutputFormatters.Output(node);
 
-        public IEnumerable<((SingleListNode, SingleListNode), SingleListNode)> GetTests()
+        public IEnumerable<((SingleListNode<int>, SingleListNode<int>), SingleListNode<int>)> GetTests()
         {
-            SingleListNode list1Test1 = new SingleListNode(1, new SingleListNode(2, new SingleListNode(4)));
-            SingleListNode list2Test1 = new SingleListNode(1, new SingleListNode(3, new SingleListNode(4)));
-            SingleListNode outputTest1 = new SingleListNode(1, new SingleListNode(1, new SingleListNode(2, new SingleListNode(3, new SingleListNode(4, new SingleListNode(4))))));
+            SingleListNode<int> list1Test1 = new SingleListNode<int>(1, new SingleListNode<int>(2, new SingleListNode<int>(4)));
+            SingleListNode<int> list2Test1 = new SingleListNode<int>(1, new SingleListNode<int>(3, new SingleListNode<int>(4)));
+            SingleListNode<int> outputTest1 = new SingleListNode<int>(1, new SingleListNode<int>(1, new SingleListNode<int>(2, new SingleListNode<int>(3, new SingleListNode<int>(4, new SingleListNode<int>(4))))));
             yield return ((list1Test1, list2Test1), outputTest1);
 
             yield return ((null, null), null);
 
-            yield return ((null, new SingleListNode(0)), new SingleListNode(0));
+            yield return ((null, new SingleListNode<int>(0)), new SingleListNode<int>(0));
 
-            yield return ((new SingleListNode(2), new SingleListNode(1)), new SingleListNode(1, new SingleListNode(2)));
+            yield return ((new SingleListNode<int>(2), new SingleListNode<int>(1)), new SingleListNode<int>(1, new SingleListNode<int>(2)));
         }
 
-        public SingleListNode OptimizedVersion(SingleListNode list1, SingleListNode list2)
+        public SingleListNode<int> OptimizedVersion(SingleListNode<int> list1, SingleListNode<int> list2)
         {
-            SingleListNode merged = new SingleListNode(0);
-            SingleListNode curNode = merged;
+            SingleListNode<int> merged = new SingleListNode<int>(0);
+            SingleListNode<int> curNode = merged;
 
             while(list1 != null && list2 != null)
             {
@@ -57,12 +57,12 @@ namespace CSharpLeetCode.problems
             return merged.next;
         }
 
-        public SingleListNode Test((SingleListNode, SingleListNode) testCase)
+        public SingleListNode<int> Test((SingleListNode<int>, SingleListNode<int>) testCase)
         {
-            SingleListNode list1 = testCase.Item1;
-            SingleListNode list2 = testCase.Item2;
-            SingleListNode merged = new SingleListNode(0);
-            SingleListNode curr = merged;
+            SingleListNode<int> list1 = testCase.Item1;
+            SingleListNode<int> list2 = testCase.Item2;
+            SingleListNode<int> merged = new SingleListNode<int>(0);
+            SingleListNode<int> curr = merged;
             while(list1 != null || list2 != null)
             {
                 if (list1 != null && list2 != null)

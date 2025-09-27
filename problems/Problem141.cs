@@ -18,37 +18,37 @@ namespace CSharpLeetCode.problems
     /// 
     /// Return true if there is a cycle in the linked list.Otherwise, return false. 
     /// </summary>
-    internal class Problem141 :  LeetCodeProblem, ILeetCodeProblem<SingleListNode, bool>
+    internal class Problem141 :  LeetCodeProblem, ILeetCodeProblem<SingleListNode<int>, bool>
     {
         public Problem141() : base(Difficulty.Easy) { }
         public string FormatOutput(bool output) => output.ToString();
 
-        public IEnumerable<(SingleListNode, bool)> GetTests()
+        public IEnumerable<(SingleListNode<int>, bool)> GetTests()
         {
-            SingleListNode test1n1 = new SingleListNode(3);
-            SingleListNode test1n2 = new SingleListNode(2);
+            SingleListNode<int> test1n1 = new SingleListNode<int>(3);
+            SingleListNode<int> test1n2 = new SingleListNode<int>(2);
             test1n1.next = test1n2;
 
-            SingleListNode test1n3 = new SingleListNode(0, new SingleListNode(-4, test1n2));
+            SingleListNode<int> test1n3 = new SingleListNode<int>(0, new SingleListNode<int>(-4, test1n2));
             test1n2.next = test1n3;
             yield return (test1n1, true);
 
 
-            SingleListNode test2n1 = new SingleListNode(1);
-            SingleListNode test2n2 = new SingleListNode(2, test2n1);
+            SingleListNode<int> test2n1 = new SingleListNode<int>(1);
+            SingleListNode<int> test2n2 = new SingleListNode<int>(2, test2n1);
             test2n1.next = test2n2;
             yield return (test2n1, true);
 
-            SingleListNode test3n1 = new SingleListNode(1);
+            SingleListNode<int> test3n1 = new SingleListNode<int>(1);
             yield return (test3n1, false);
         }
 
-        public bool Test(SingleListNode list)
+        public bool Test(SingleListNode<int> list)
         {
-            SingleListNode root = list;
+            SingleListNode<int> root = list;
 
-            SingleListNode fast = root;
-            SingleListNode slow = root;
+            SingleListNode<int> fast = root;
+            SingleListNode<int> slow = root;
 
             while (fast != null)
             {

@@ -11,10 +11,10 @@ namespace CSharpLeetCode.problems
     /// <summary>
     /// Remove a node from a Linked List, given the node to remove.
     /// </summary>
-    internal class Problem237 : LeetCodeProblem, ILeetCodeProblem<SingleListNode, SingleListNode>
+    internal class Problem237 : LeetCodeProblem, ILeetCodeProblem<SingleListNode<int>, SingleListNode<int>>
     {
         public Problem237() : base(Difficulty.Medium) { }
-        public string FormatOutput(SingleListNode node) {
+        public string FormatOutput(SingleListNode<int> node) {
             StringBuilder sb = new StringBuilder();
             while (node != null) {
                 sb.Append(node.val.ToString());
@@ -23,11 +23,11 @@ namespace CSharpLeetCode.problems
             return sb.ToString();
         }
 
-        public IEnumerable<(SingleListNode, SingleListNode)> GetTests()
+        public IEnumerable<(SingleListNode<int>, SingleListNode<int>)> GetTests()
         {
-            SingleListNode list1 = new SingleListNode(8);
-            list1.next = new SingleListNode(2);
-            list1.next.next = new SingleListNode(4);
+            SingleListNode<int> list1 = new SingleListNode<int>(8);
+            list1.next = new SingleListNode<int>(2);
+            list1.next.next = new SingleListNode<int>(4);
             yield return (list1.next, list1.next);
         }
 
@@ -36,9 +36,9 @@ namespace CSharpLeetCode.problems
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public SingleListNode Test(SingleListNode node)
+        public SingleListNode<int> Test(SingleListNode<int> node)
         {
-            SingleListNode prev = null;
+            SingleListNode<int> prev = null;
             while (node.next != null)
             {
                 node.val = node.next.val;
@@ -57,7 +57,7 @@ namespace CSharpLeetCode.problems
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        public SingleListNode Optimized(SingleListNode node)
+        public SingleListNode<int> Optimized(SingleListNode<int> node)
         {
             node.val = node.next.val;
             node.next = node.next.next;

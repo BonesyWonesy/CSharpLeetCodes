@@ -9,34 +9,34 @@ using System.Threading.Tasks;
 
 namespace CSharpLeetCode.problems
 {
-    internal class Problem19: LeetCodeProblem, ILeetCodeProblem<(SingleListNode, int), SingleListNode>
+    internal class Problem19: LeetCodeProblem, ILeetCodeProblem<(SingleListNode<int>, int), SingleListNode<int>>
     {
         public Problem19() : base(Difficulty.Medium) { }
 
-        public string FormatOutput(SingleListNode node) => OutputFormatters.Output(node);
+        public string FormatOutput(SingleListNode<int> node) => OutputFormatters.Output(node);
 
-        public IEnumerable<((SingleListNode,int), SingleListNode)> GetTests()
+        public IEnumerable<((SingleListNode<int>, int), SingleListNode<int>)> GetTests()
         {
-            SingleListNode firstTest = new SingleListNode(1, new SingleListNode(2, new SingleListNode(3, new SingleListNode(4, new SingleListNode(5)))));
+            SingleListNode<int> firstTest = new SingleListNode<int>(1, new SingleListNode<int>(2, new SingleListNode<int>(3, new SingleListNode<int>(4, new SingleListNode<int>(5)))));
             yield return ((firstTest, 2), firstTest);
 
-            SingleListNode secondTest = new SingleListNode(1);
+            SingleListNode<int> secondTest = new SingleListNode<int>(1);
             yield return ((secondTest, 1), null);
 
-            SingleListNode thirdTest = new SingleListNode(1, new SingleListNode(2));
+            SingleListNode<int> thirdTest = new SingleListNode<int>(1, new SingleListNode<int>(2));
             yield return ((thirdTest, 1), thirdTest);
         }
 
-        public SingleListNode Test((SingleListNode, int) testCase)
+        public SingleListNode<int> Test((SingleListNode<int>, int) testCase)
         {
-            SingleListNode head = testCase.Item1;
+            SingleListNode<int> head = testCase.Item1;
             int n = testCase.Item2;
 
             // Contraint says size is minimum 1
             int sz = 0;
-            SingleListNode prev = null;
-            SingleListNode trackedNode = null;
-            SingleListNode t = head;
+            SingleListNode<int> prev = null;
+            SingleListNode<int> trackedNode = null;
+            SingleListNode<int> t = head;
             while (t != null)
             {
                 ++sz;
