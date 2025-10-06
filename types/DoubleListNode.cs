@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Versioning;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpLeetCode.types
+﻿namespace CSharpLeetCode.types
 {
-  internal class DoubleListNode<T> {
+  internal class DoubleListNode<T>
+  {
     public T _val;
     public DoubleListNode<T>? _next;
     public DoubleListNode<T>? _prev;

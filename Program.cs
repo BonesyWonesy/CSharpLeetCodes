@@ -1,19 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using CSharpLeetCode;
-using CSharpLeetCode.types;
 using CSharpLeetCode.problems;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
-using System.Xml.Linq;
+using CSharpLeetCode.types;
 
 
- ILeetCodeProblem[] metaProblems = [
+ILeetCodeProblem[] metaProblems = [
 //    new Problem1()
+//    new Problem3()
 //    new Problem7()
 //    new Problem8()
+//    new Problem13()
 //    new Problem14()
 //    new Problem19()
+//    new Problem20()
 //    new Problem21()
 //    new Problem28()
 //    new Problem34(),
@@ -22,29 +20,40 @@ using System.Xml.Linq;
 //    new Problem50(),
 //    new Problem56(),
 //    new Problem66()
+//    new Problem70()
 //    new Problem71(),
 //    new Problem88(),
+//    new Problem94()
 //    new Problem98()
 //    new Problem101()
 //    new Problem102()
 //    new Problem104()
+//    new Problem118()
 //    new Problem121()
 //    new Problem125(),
 //    new Problem141()
 //    new Problem146(),
-      new Problem155()
+//    new Problem155()
 //    new Problem162(),
+//    new Problem190()
+//    new Problem191()
 //    new Problem198()
 //    new Problem199(),
+//    new Problem204(),
 //    new Problem206()
 //    new Problem215(),
 //    new Problem227(),
 //    new Problem234()
 //    new Problem236(),
 //    new Problem242()
+//    new Problem246()
+    new Problem247()
+//      new Problem248()
+//    new Problem268()
 //    new Problem278()
 //    new Problem283()
 //    new Problem314(),
+//    new Problem326()
 //    new Problem339(),
 //    new Problem344()
 //    new Problem347(),
@@ -52,6 +61,8 @@ using System.Xml.Linq;
 //    new Problem384()
 //    new Problem387()
 //    new Problem408(),
+//    new Problem412()
+//    new Problem461()
 //    new Problem543(),
 //    new Problem560(),
 //    new Problem680(),
@@ -64,13 +75,44 @@ using System.Xml.Linq;
 //    new Problem1762(),
 ];
 
-for( int p = 0; p < metaProblems.Length; ++p)
-{
-    int t = 1;
-    metaProblems[p].GetTests().ToList().ForEach(testCase =>
-    {
-        var result = metaProblems[p].Test(testCase.Item1);
-        Console.WriteLine($"Problem {t++} ({metaProblems[p].GetType().Name}): {metaProblems[p].FormatOutput(result)}, expected: {metaProblems[p].FormatOutput(testCase.Item2)}");
-    });
+string NL = Environment.NewLine; // shortcut
+string NORMAL = Console.IsOutputRedirected ? "" : "\x1b[39m";
+string RED = Console.IsOutputRedirected ? "" : "\x1b[91m";
+string GREEN = Console.IsOutputRedirected ? "" : "\x1b[92m";
+string YELLOW = Console.IsOutputRedirected ? "" : "\x1b[93m";
+string BLUE = Console.IsOutputRedirected ? "" : "\x1b[94m";
+string MAGENTA = Console.IsOutputRedirected ? "" : "\x1b[95m";
+string CYAN = Console.IsOutputRedirected ? "" : "\x1b[96m";
+string GREY = Console.IsOutputRedirected ? "" : "\x1b[97m";
+string BOLD = Console.IsOutputRedirected ? "" : "\x1b[1m";
+string NOBOLD = Console.IsOutputRedirected ? "" : "\x1b[22m";
+string UNDERLINE = Console.IsOutputRedirected ? "" : "\x1b[4m";
+string NOUNDERLINE = Console.IsOutputRedirected ? "" : "\x1b[24m";
+string REVERSE = Console.IsOutputRedirected ? "" : "\x1b[7m";
+string NOREVERSE = Console.IsOutputRedirected ? "" : "\x1b[27m";
 
+for (int p = 0; p < metaProblems.Length; ++p)
+{
+  int t = 1;
+  metaProblems[p].GetTests().ToList().ForEach(testCase =>
+  {
+    var result = metaProblems[p].Test(testCase.Item1);
+
+    string outputStr = metaProblems[p].FormatOutput(result);
+    string expected = metaProblems[p].FormatOutput(testCase.Item2);
+
+    string problem = $"Problem {t++} ({metaProblems[p].GetType().Name}):";
+
+    
+    if (metaProblems[p].IsEqual(result, testCase.Item2))
+    {
+      Console.WriteLine($"{GREEN}{problem}{NORMAL} {metaProblems[p].FormatOutput(result)}, expected: {metaProblems[p].FormatOutput(testCase.Item2)}");
+    }
+    else
+    {
+      Console.WriteLine($"{RED}{problem}{NORMAL} {metaProblems[p].FormatOutput(result)}, expected: {metaProblems[p].FormatOutput(testCase.Item2)}");
+    }
+    
+    //Console.WriteLine($"{NORMAL}{problem}{NORMAL} {metaProblems[p].FormatOutput(result)}, expected: {metaProblems[p].FormatOutput(testCase.Item2)}");
+  });
 }

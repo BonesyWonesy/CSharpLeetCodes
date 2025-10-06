@@ -1,12 +1,4 @@
 ﻿using CSharpLeetCode.types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CSharpLeetCode.problems
 {
@@ -45,6 +37,16 @@ namespace CSharpLeetCode.problems
     public Problem384() : base(Difficulty.Medium) { }
 
     public string FormatOutput(int[] result) => OutputFormatters.Output(result);
+    public bool IsEqual(int[] result, int[] expected) {
+      for (int i = 0; i < result.Length; ++i)
+      {
+        if (!expected.Contains(result[i]))
+        {
+          return false;
+        }
+      }
+      return true;
+    }
 
     public IEnumerable<((string, int[]), int[])> GetTests() {
       yield return (("Solution", new int[] { 1, 2, 3 }), []);
@@ -54,11 +56,16 @@ namespace CSharpLeetCode.problems
     }
 
     public int[] Test((string, int[]) testCase) {
-      if (testCase.Item1 == "Solution") { 
+      if (testCase.Item1 == "Solution")
+      {
         Solution(testCase.Item2);
-      } else if (testCase.Item1 == "shuffle") {
+      }
+      else if (testCase.Item1 == "shuffle")
+      {
         return shuffle();
-      } else if (testCase.Item1 == "reset") {
+      }
+      else if (testCase.Item1 == "reset")
+      {
         return reset();
       }
 
@@ -96,9 +103,9 @@ namespace CSharpLeetCode.problems
 
       _nums.CopyTo(_shuffled, 0);
 
-      for(int i = _shuffled.Length - 1; i > 0; --i)
+      for (int i = _shuffled.Length - 1; i > 0; --i)
       {
-        int j = _rng.Next(0, i+1);
+        int j = _rng.Next(0, i + 1);
         int t = _shuffled[i];
         _shuffled[i] = _shuffled[j];
         _shuffled[j] = t;

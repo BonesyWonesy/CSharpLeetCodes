@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpLeetCode.types;
+﻿using CSharpLeetCode.types;
 
 namespace CSharpLeetCode.problems
 {
@@ -18,10 +13,11 @@ namespace CSharpLeetCode.problems
   /// return the maximum amount of money you can rob tonight without alerting the
   /// police.
   /// </summary>
-  internal class Problem198: LeetCodeProblem, ILeetCodeProblem<int[], int>
+  internal class Problem198 : LeetCodeProblem, ILeetCodeProblem<int[], int>
   {
     public Problem198() : base(Difficulty.Medium) { }
     public string FormatOutput(int output) => $"{output}";
+    public bool IsEqual(int result, int expected) => result == expected;
 
     public IEnumerable<(int[], int)> GetTests() {
       yield return (new int[] { 1, 2, 3, 1 }, 4);
@@ -45,19 +41,25 @@ namespace CSharpLeetCode.problems
     /// <param name="nums"></param>
     /// <returns></returns>
     public int Test(int[] nums) {
-          
-      if (nums.Length == 0) {
+
+      if (nums.Length == 0)
+      {
         return 0;
-      } else if (nums.Length == 1) {
+      }
+      else if (nums.Length == 1)
+      {
         return nums[0];
-      } else if (nums.Length == 2) {
+      }
+      else if (nums.Length == 2)
+      {
         return nums[0] > nums[1] ? nums[0] : nums[1];
       }
 
       int currentMax = nums[0];
       int robbedCash = Math.Max(nums[0], nums[1]);
 
-      for(int n = 2; n < nums.Length; ++n) {
+      for (int n = 2; n < nums.Length; ++n)
+      {
         currentMax = Math.Max(currentMax, nums[n - 2]);
         nums[n] = nums[n] + currentMax;
         robbedCash = Math.Max(robbedCash, nums[n]);

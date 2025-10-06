@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpLeetCode.problems
+﻿namespace CSharpLeetCode.problems
 {
-    internal class Problm198
-    {
-    }
+  internal class Problm198
+  {
+  }
 }

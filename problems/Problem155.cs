@@ -1,12 +1,4 @@
 ﻿using CSharpLeetCode.types;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CSharpLeetCode.problems
 {
@@ -25,7 +17,8 @@ namespace CSharpLeetCode.problems
   /// </summary>
   internal class Problem155 : LeetCodeProblem, ILeetCodeProblem<(string, int?), int?>
   {
-    private sealed class MinStack {
+    private sealed class MinStack
+    {
 
       int _min;
 
@@ -36,7 +29,7 @@ namespace CSharpLeetCode.problems
       }
       public void Push(int val) {
         _min = Math.Min(_min, val);
-        _head = new SingleListNode<(int, int)>((val, _min), _head);        
+        _head = new SingleListNode<(int, int)>((val, _min), _head);
       }
 
       public void Pop() {
@@ -51,6 +44,7 @@ namespace CSharpLeetCode.problems
 
     public Problem155() : base(Difficulty.Medium) { }
     public string FormatOutput(int? result) => result == null ? "null" : result.ToString();
+    public bool IsEqual(int? result, int? expected) => result == expected;
 
     public IEnumerable<((string, int?), int?)> GetTests() {
       yield return (("MinStack", null), null);
@@ -87,19 +81,26 @@ namespace CSharpLeetCode.problems
 
     public int? Test((string, int?) testCase) {
 
-      if ("MinStack" == testCase.Item1) {
+      if ("MinStack" == testCase.Item1)
+      {
         _stack = new MinStack();
         return null;
       }
-      else if("push" == testCase.Item1) {
+      else if ("push" == testCase.Item1)
+      {
         _stack.Push((int)testCase.Item2);
-      } else if ("pop" == testCase.Item1) {
+      }
+      else if ("pop" == testCase.Item1)
+      {
         _stack.Pop();
         return null;
       }
-      else if ("top" == testCase.Item1) {
+      else if ("top" == testCase.Item1)
+      {
         return _stack.Top();
-      } else if ("getMin" == testCase.Item1) {
+      }
+      else if ("getMin" == testCase.Item1)
+      {
         return _stack.GetMin();
       }
 
